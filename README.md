@@ -1,5 +1,5 @@
 # Tic-Tac-Toe Game
-A Tic-Tac-Toe game which entertains the person who plays it.
+A Tic-Tac-Toe game using PyQt5 library present in the Python which helps to build GUIs apps with much ease.
 
 This project is a sincere attempt by MSTC, DA-IICT to encourage Open Source contribution. Make the best out of the ongoing Hacktoberfest 2024 by contributing to for-the-community projects. This project participates in Hacktoberest 2024 and all successful PRs made here will be counted among the at least 4 successful pull requests that you'd need to make in order to be eligible for the Hacktoberfest appreciation (Digital reward/(plant a tree / get a tee)).
 
