@@ -8,7 +8,9 @@ class UI(QMainWindow):
 
         # Load the UI file
 
-        # Connect the Buttons and other widgets
+        # Adding the widgets to the file
+
+        # Connecting the buttons
 
         # Show the window
 
