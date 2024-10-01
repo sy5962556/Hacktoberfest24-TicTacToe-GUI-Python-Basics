@@ -19,7 +19,7 @@ class UI(QMainWindow):
         pass
 
     # Check button checks if X's is winning or O's is winning
-    def Check(self):
+    def Check(self, btn):
         pass
 
     # Reaction when you push Buttons
