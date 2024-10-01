@@ -35,10 +35,20 @@ class UI(QMainWindow):
 
         
         self.show()
+        self.newGameButton.hide() # Initially hide the new game button
 
     # New Game clears the whole Board
     def NewGame(self):
-        pass
+        button_list = [
+            self.pushButton_1, self.pushButton_2, self.pushButton_3,
+            self.pushButton_4, self.pushButton_5, self.pushButton_6,
+            self.pushButton_7, self.pushButton_8, self.pushButton_9
+        ]
+        for button in button_list:
+            button.setText('')  # Clear the text
+            button.setEnabled(True)  # Ensure all buttons are enabled
+        
+        self.newGameButton.hide()  # Hide the new game button after resetting
 
     # Check button checks if X's is winning or O's is winning
     def Check(self):
