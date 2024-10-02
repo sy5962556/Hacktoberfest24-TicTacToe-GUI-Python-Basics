@@ -5,6 +5,10 @@ import sys
 class UI(QMainWindow):
     def __init__(self):
         super(UI, self).__init__()
+        
+        self.player_turn = True  # Player 1 starts
+         
+
 
         uic.loadUi('Tic_Tac_Toe_UI.ui', self)
 
@@ -33,9 +37,13 @@ class UI(QMainWindow):
         self.pushButton_9.clicked.connect(lambda: self.PushingButton(self.pushButton_9))
         self.newGameButton.clicked.connect(self.NewGame)
 
+        # Set the label to display the first turn message
+        self.label.setText("Player 1 (X) turn")
+
         
         self.show()
         self.newGameButton.hide() # Initially hide the new game button
+
 
     # New Game clears the whole Board
     def NewGame(self):
@@ -54,9 +62,24 @@ class UI(QMainWindow):
     def Check(self):
         pass
 
-    # Reaction when you push Buttons
+   # Reaction when you push Buttons
     def PushingButton(self, btn):
-        pass
+        if btn.text() == "":
+            # Player 1's turn (X)
+            if self.player_turn:
+                btn.setText("X")
+                self.label.setText("Player 2's turn (O)")
+            # Player 2's turn (O)
+            else:
+                btn.setText("O")
+                self.label.setText("Player 1's turn (X)")
+
+            # Switch turn
+            self.player_turn = not self.player_turn
+        else:
+            # If the spot is already taken
+            self.label.setText("Invalid move! Spot already taken.")
+
 
 app = QApplication(sys.argv)
 
