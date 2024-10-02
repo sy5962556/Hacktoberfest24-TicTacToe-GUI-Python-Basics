@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLabel
+from PyQt5.QtGui import QPalette, QColor
 from PyQt5 import uic
 import sys
 
@@ -52,11 +53,66 @@ class UI(QMainWindow):
 
     # Check button checks if X's is winning or O's is winning
     def Check(self):
-        pass
+        winning_combinations = [
+            [self.pushButton_1, self.pushButton_2, self.pushButton_3],
+            [self.pushButton_4, self.pushButton_5, self.pushButton_6],
+            [self.pushButton_7, self.pushButton_8, self.pushButton_9],
+            [self.pushButton_1, self.pushButton_4, self.pushButton_7],
+            [self.pushButton_2, self.pushButton_5, self.pushButton_8],
+            [self.pushButton_3, self.pushButton_6, self.pushButton_9],
+            [self.pushButton_1, self.pushButton_5, self.pushButton_9],
+            [self.pushButton_3, self.pushButton_5, self.pushButton_7]
+        ]
+        
+        for combination in winning_combinations:
+            text1 = combination[0].text()
+            text2 = combination[1].text()
+            text3 = combination[2].text()
+            
+            if text1 != '' and text1 == text2 == text3:
+                for btn in combination:
+                    palette = btn.palette()
+                    palette.setColor(QPalette.Button, QColor(0, 255, 0))
+                    btn.setPalette(palette)
+                    btn.setAutoFillBackground(True)
+                
+                self.DisableButtons()
+                self.newGameButton.show()
+                self.label.setText(f"{text1} wins!")
+                return
+        
+        all_filled = all(btn.text() != '' for btn in [
+            self.pushButton_1, self.pushButton_2, self.pushButton_3,
+            self.pushButton_4, self.pushButton_5, self.pushButton_6,
+            self.pushButton_7, self.pushButton_8, self.pushButton_9
+        ])
+        
+        if all_filled:
+            self.label.setText("It's a draw!")
+            self.newGameButton.show()
 
-    # Reaction when you push Buttons
+    def DisableButtons(self):
+        button_list = [
+            self.pushButton_1, self.pushButton_2, self.pushButton_3,
+            self.pushButton_4, self.pushButton_5, self.pushButton_6,
+            self.pushButton_7, self.pushButton_8, self.pushButton_9
+        ]
+        
+        for button in button_list:
+            button.setEnabled(False)
+
     def PushingButton(self, btn):
-        pass
+        current_text = btn.text()
+        if current_text == '':
+            if self.label.text() == 'X\'s turn':
+                btn.setText('X')
+                self.label.setText('O\'s turn')
+            else:
+                btn.setText('O')
+                self.label.setText('X\'s turn')
+            
+            btn.setEnabled(False)
+            self.Check()
 
 app = QApplication(sys.argv)
 
