@@ -124,11 +124,15 @@ class UI(QMainWindow):
                 self.label.setText("Player 2's turn (O)")
             # Player 2's turn (O)
             else:
-                btn.setText('O')
-                self.label.setText('X\'s turn')
+                btn.setText("O")
+                self.label.setText("Player 1's turn (X)")
+            
+            # Toggle the turn
+            self.player_turn = not self.player_turn
             
             btn.setEnabled(False)
-            self.Check()    
+            self.Check()
+
 
 app = QApplication(sys.argv)
 
