@@ -48,7 +48,13 @@ class UI(QMainWindow):
         for button in button_list:
             button.setText('')  # Clear the text
             button.setEnabled(True)  # Ensure all buttons are enabled
+            # Reset the button color to default
+            palette = button.palette()
+            palette.setColor(QPalette.Button, QColor(240, 240, 240))  # Default color, adjust as needed
+            button.setPalette(palette)
+            button.setAutoFillBackground(False)
         
+        self.label.setText('X\'s turn')
         self.newGameButton.hide()  # Hide the new game button after resetting
 
     # Check button checks if X's is winning or O's is winning
@@ -112,9 +118,10 @@ class UI(QMainWindow):
                 self.label.setText('X\'s turn')
             
             btn.setEnabled(False)
-            self.Check()
+            self.Check()    
 
 app = QApplication(sys.argv)
+
 
 UIWindow = UI()
 
